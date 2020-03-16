@@ -6,7 +6,7 @@ namespace UserService.Application.NotificationMediator.Commands
     public class DeleteUserCommand : IRequest<UserDTO>
     {
         public int Id { get; set; }
-        public DeleteNotifCommand(int id)
+        public DeleteUserCommand(int id)
         {
             Id = id;
         }
