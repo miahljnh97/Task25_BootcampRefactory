@@ -22,11 +22,14 @@ namespace UserService.Application.NotificationMediator.Commands
             {
                 return null;
             }
+            else
+            {
+                _context.userModels.Remove(data);
+                await _context.SaveChangesAsync();
 
-            _context.userModels.Remove(data);
-            await _context.SaveChangesAsync();
-
-            return new UserDTO { Message = "Successfull", Success = true };
+                return new UserDTO { Message = "Successfully deleted Data", Success = true };
+            }
+           
         }
     }
 }

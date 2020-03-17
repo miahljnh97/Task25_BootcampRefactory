@@ -1,7 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using RestService.Application.NotificationMediator.Request;
 using RestService.Models;
 
 namespace RestService.Application.NotificationMediator.Queries.GetNotif
@@ -16,9 +19,24 @@ namespace RestService.Application.NotificationMediator.Queries.GetNotif
 
         public async Task<GetNotifDTO> Handle(GetNotifQuery request, CancellationToken cancellationToken)
         {
-            var data = await _context.notifs.FindAsync(request.Id);
+            var notifData = await _context.notifs.FirstAsync(x => x.Id == request.Id);
+            var notifLogData = await _context.notifLogs.Where(x => x.Id == request.Id).ToListAsync();
 
-            if (data == null)
+            var logList = new List<NotifLogData>();
+
+            foreach (var k in notifLogData)
+            {
+                logList.Add(new NotifLogData()
+                {
+                    Notification_id = k.Notification_id,
+                    From = k.From,
+                    Read_at = k.Read_at,
+                    Target = k.Target
+                });
+
+            }
+
+            if (notifData == null)
             {
                 return null;
             }
@@ -28,11 +46,16 @@ namespace RestService.Application.NotificationMediator.Queries.GetNotif
                 {
                     Success = true,
                     Message = "Success retreiving data",
-                    Data = new NotifData
+                    data = new NotifDTO
                     {
-                        Id = data.Id,
-                        Title = data.Title,
-                        Message = data.Message
+                        Notifications = new NotifData()
+                        {
+                            Id = notifData.Id,
+                            Title = notifData.Title,
+                            Message = notifData.Message
+                        },
+
+                        Notification_logs = logList
                     }
                 };
             }

@@ -15,17 +15,22 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="Hangfire" Version="1.7.9" />
+    <PackageReference Include="MailKit" Version="2.5.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Application\" />
     <Folder Include="Application\NotificationMediator\" />
-    <Folder Include="Application\NotificationLogMediator\" />
     <Folder Include="Application\NotificationMediator\Commands\" />
     <Folder Include="Application\NotificationMediator\Queries\" />
     <Folder Include="Application\NotificationMediator\Request\" />
     <Folder Include="Application\NotificationMediator\Queries\GetNotif\" />
     <Folder Include="Application\NotificationMediator\Queries\GetNotifs\" />
+    <Folder Include="Application\NotificationMediator\Queries\GetWithLog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RestService.csproj" />
   </ItemGroup>
 </Project>

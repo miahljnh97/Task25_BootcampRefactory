@@ -10,7 +10,7 @@ using RestService.Models;
 namespace RestService.Migrations
 {
     [DbContext(typeof(RSContext))]
-    [Migration("20200316105802_RestServiceMigration")]
+    [Migration("20200317131915_RestServiceMigration")]
     partial class RestServiceMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

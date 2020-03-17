@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using MediatR;
 using UserService.Application.UserMediator.Queries.GetUser;
+using UserService.Application.UserMediator.Request;
 using UserService.Models;
 
 namespace UserService.Application.NotificationMediator.Commands
 {
-    public class PutUserCommandHandler : IRequestHandler<PutUserCommand, GetUserDTO>
+    public class PutUserCommandHandler : IRequestHandler<PutUserCommand, UserDTO>
     {
         private readonly USContext _context;
 
@@ -15,7 +16,7 @@ namespace UserService.Application.NotificationMediator.Commands
             _context = context;
         }
 
-        public async Task<GetUserDTO> Handle(PutUserCommand request, CancellationToken cancellationToken)
+        public async Task<UserDTO> Handle(PutUserCommand request, CancellationToken cancellationToken)
         {
             var data = await _context.userModels.FindAsync(request.Data.Attributes.Id);
 
@@ -27,19 +28,10 @@ namespace UserService.Application.NotificationMediator.Commands
             _context.SaveChanges();
 
 
-            return new GetUserDTO
+            return new UserDTO
             {
                 Message = "Success retreiving data",
-                Success = true,
-                Data = new userData
-                {
-                    Id = data.Id,
-                    Name = data.Name,
-                    Username = data.Username,
-                    Email = data.Email,
-                    Password = data.Password,
-                    Address = data.Address
-                }
+                Success = true
             };
         }
     }

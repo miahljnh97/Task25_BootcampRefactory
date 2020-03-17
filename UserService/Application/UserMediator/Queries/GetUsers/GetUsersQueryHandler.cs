@@ -20,26 +20,12 @@ namespace RestService.Application.NotificationMediator.Queries.GetNotifs
         public async Task<GetUsersDTO> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
             var data = await _context.userModels.ToListAsync();
-            var result = new List<userData>();
-
-            foreach (var x in data)
-            {
-                result.Add(new userData
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Username = x.Username,
-                    Email = x.Email,
-                    Password = x.Password,
-                    Address = x.Address
-                });
-            }
 
             return new GetUsersDTO
             {
                 Success = true,
                 Message = "Success retreiving data",
-                Data = result
+                Data = data
             };
         }
     }

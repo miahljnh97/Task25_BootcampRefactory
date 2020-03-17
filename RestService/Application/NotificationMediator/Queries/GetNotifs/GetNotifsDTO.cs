@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using RestService.Application.NotificationMediator.Queries.GetNotif;
+﻿using System.Collections.Generic;
+using RestService.Application.NotificationMediator.Request;
 using RestService.Models;
 
 namespace RestService.Application.NotificationMediator.Queries.GetNotifs

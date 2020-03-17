@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>c41dc21b-6a1f-4d6a-895e-20cffb476acd</UserSecretsId>
   </PropertyGroup>
 
 
@@ -15,6 +17,8 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="Hangfire" Version="1.7.9" />
+    <PackageReference Include="MailKit" Version="2.5.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -26,5 +30,8 @@
     <Folder Include="Application\UserMediator\Request\" />
     <Folder Include="Application\UserMediator\Queries\GetUser\" />
     <Folder Include="Application\UserMediator\Queries\GetUsers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UserService.csproj" />
   </ItemGroup>
 </Project>

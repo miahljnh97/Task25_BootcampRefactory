@@ -7,7 +7,7 @@ using RestService.Models;
 
 namespace RestService.Application.NotificationMediator.Commands
 {
-    public class DeleteNotifCommandHandler : IRequestHandler<DeleteNotifCommand, NotifDTO>
+    public class DeleteNotifCommandHandler : IRequestHandler<DeleteNotifCommand, CommandsDTO>
     {
         private readonly RSContext _context;
         public DeleteNotifCommandHandler(RSContext context)
@@ -15,7 +15,7 @@ namespace RestService.Application.NotificationMediator.Commands
             _context = context;
         }
 
-        public async Task<NotifDTO> Handle(DeleteNotifCommand request, CancellationToken cancellationToken)
+        public async Task<CommandsDTO> Handle(DeleteNotifCommand request, CancellationToken cancellationToken)
         {
             var data = await _context.notifs.FindAsync(request.Id);
 
@@ -27,7 +27,7 @@ namespace RestService.Application.NotificationMediator.Commands
             _context.notifs.Remove(data);
             await _context.SaveChangesAsync();
 
-            return new NotifDTO { Message = "Successfull", Success = true };
+            return new CommandsDTO { Message = "Successfull", Success = true };
         }
     }
 }

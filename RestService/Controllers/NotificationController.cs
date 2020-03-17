@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestService.Application.NotificationMediator.Commands;
 using RestService.Application.NotificationMediator.Queries.GetNotif;
 using RestService.Application.NotificationMediator.Queries.GetNotifs;
+using RestService.Application.NotificationMediator.Queries.GetWithLog;
 
 namespace RestService.Controllers
 {
@@ -19,11 +20,20 @@ namespace RestService.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult> Get(string include)
         {
-            var notif = new GetNotifsQuery();
+            if(include == "logs")
+            {
+                var notif = new GetWithLogQuery();
+                return Ok(await _mediatr.Send(notif));
+            }
+            else
+            {
+                var notif = new GetNotifsQuery();
 
-            return Ok(await _mediatr.Send(notif));
+                return Ok(await _mediatr.Send(notif));
+            }
+            
         }
 
         [HttpGet("{id}")]
@@ -45,7 +55,7 @@ namespace RestService.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, PutNotifCommand data)
         {
-            data.Data.Attributes.Id = id;
+            data.Data.Attributes.Notification_id = id;
             var result = await _mediatr.Send(data);
             return Ok(result);
         }

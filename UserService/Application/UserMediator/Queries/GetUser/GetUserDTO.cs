@@ -5,6 +5,6 @@ namespace UserService.Application.UserMediator.Queries.GetUser
 {
     public class GetUserDTO : BaseDTO
     {
-        public userData Data { get; set; } 
+        public userModel Data { get; set; } 
     }
 }

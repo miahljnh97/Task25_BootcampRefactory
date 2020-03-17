@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using RestService.Application.NotificationMediator.Queries.GetNotif;
+using RestService.Application.NotificationMediator.Request;
 using RestService.Models;
 
 namespace RestService.Application.NotificationMediator.Queries.GetNotifs

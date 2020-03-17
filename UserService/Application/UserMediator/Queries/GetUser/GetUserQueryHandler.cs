@@ -28,15 +28,7 @@ namespace UserService.Application.UserMediator.Queries.GetUser
                 {
                     Success = true,
                     Message = "Success retreiving data",
-                    Data = new userData
-                    {
-                        Id = data.Id,
-                        Name = data.Name,
-                        Username = data.Username,
-                        Email = data.Email,
-                        Password = data.Password,
-                        Address = data.Address
-                    }
+                    Data = data
                 };
             }
         }

@@ -7,6 +7,6 @@ namespace RestService.Application.NotificationMediator.Queries.GetNotifs
 {
     public class GetUsersDTO : BaseDTO
     {
-        public List<userData> Data { get; set; }
+        public List<userModel> Data { get; set; }
     }
 }
