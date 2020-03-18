@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "UserService\UserService.csproj", "{7ACC37BD-D4EF-40AF-89E8-E74CB371ECF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestService", "RestService\RestService.csproj", "{0D2267D8-5CC3-4871-B39C-88B61343A4FC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +13,5 @@ Global
 		{7ACC37BD-D4EF-40AF-89E8-E74CB371ECF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ACC37BD-D4EF-40AF-89E8-E74CB371ECF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ACC37BD-D4EF-40AF-89E8-E74CB371ECF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D2267D8-5CC3-4871-B39C-88B61343A4FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D2267D8-5CC3-4871-B39C-88B61343A4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D2267D8-5CC3-4871-B39C-88B61343A4FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D2267D8-5CC3-4871-B39C-88B61343A4FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
