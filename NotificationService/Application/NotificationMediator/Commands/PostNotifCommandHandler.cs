@@ -51,6 +51,7 @@ namespace NotificationService.Application.NotificationMediator.Commands
                 });
 
                 await _context.SaveChangesAsync();
+                await SendMail("kcg210@outlook.com", "kcg211@outlook.com", "ini subject", "dicoba lagi yaa");
             }
             return new CommandsDTO()
             {
@@ -70,7 +71,7 @@ namespace NotificationService.Application.NotificationMediator.Commands
         {
             var client = new SmtpClient("smtp.mailtrap.io", 2525)
             {
-                Credentials = new NetworkCredential("4101aedaf3b46c", "e05b5c377ba6d8"),
+                Credentials = new NetworkCredential("c58cd8a2750dab", "8df199c377a4d5"),
                 EnableSsl = true
             };
             await client.SendMailAsync(emailfrom, emailto, subject, body);

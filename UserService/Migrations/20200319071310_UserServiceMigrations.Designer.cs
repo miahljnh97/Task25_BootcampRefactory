@@ -9,7 +9,7 @@ using UserService.Models;
 namespace UserService.Migrations
 {
     [DbContext(typeof(USContext))]
-    [Migration("20200317131915_UserServiceMigrations")]
+    [Migration("20200319071310_UserServiceMigrations")]
     partial class UserServiceMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

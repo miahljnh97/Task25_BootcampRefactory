@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NotificationService.Migrations
 {
     [DbContext(typeof(RSContext))]
-    [Migration("20200318121859_NotifServiceMigrations")]
+    [Migration("20200319071311_NotifServiceMigrations")]
     partial class NotifServiceMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
