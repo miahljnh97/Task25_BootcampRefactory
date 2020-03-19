@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -8,6 +9,7 @@ using MailKit.Net.Smtp;
 using MediatR;
 using MimeKit;
 using Newtonsoft.Json;
+using RabbitMQ.Client;
 using UserService.Application.UserMediator.Queries.GetUser;
 using UserService.Application.UserMediator.Request;
 using UserService.Models;
@@ -61,9 +63,29 @@ namespace UserService.Application.NotificationMediator.Commands
             };
 
             var jsonObject = JsonConvert.SerializeObject(httpContent);
-            var content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
-            await client.PostAsync("http://localhost:5007/notification", content);
+            var factory = new ConnectionFactory() { HostName = "some-rabbit" };
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                channel.ExchangeDeclare("userExchange", "userType");
+
+                var body = Encoding.UTF8.GetBytes(jsonObject);
+
+                var properties = channel.CreateBasicProperties();
+                properties.Persistent = true;
+
+                channel.BasicPublish(
+                    exchange: "",
+                    routingKey: "userKey",
+                    basicProperties: null,
+                    body: body
+                    );
+
+                Console.WriteLine("User data has bee forwarded");
+                Console.ReadLine();
+            }
+            Console.ReadLine();
 
             return new UserDTO()
             {

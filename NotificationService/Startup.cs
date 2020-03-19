@@ -1,4 +1,5 @@
 using System.Reflection;
+using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace NotificationService
 
             services.AddDbContext<RSContext>(opt
             => opt.UseNpgsql(Configuration.GetConnectionString("NpgsqlConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
