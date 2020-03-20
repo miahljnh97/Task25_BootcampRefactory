@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -50,10 +51,10 @@ namespace NotificationService.Application.NotificationMediator.Queries.GetNotifs
             using (var _connection = _factory.CreateConnection())
             using (var _channel = _connection.CreateModel())
             {
-                _channel.ExchangeDeclare("userDataExchange", "fanout");
+                //_channel.ExchangeDeclare("userDataExchange", "fanout");
 
-                var queueName = _channel.QueueDeclare();
-                _channel.QueueBind(queueName, "userDataExchange", string.Empty);
+                //var queueName = _channel.QueueDeclare();
+                //_channel.QueueBind(queueName, "userDataExchange", string.Empty);
 
                 var consumer = new EventingBasicConsumer(_channel);
                 consumer.Received += async (model, ea) =>
