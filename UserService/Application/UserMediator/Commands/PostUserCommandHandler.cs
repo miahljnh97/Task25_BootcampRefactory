@@ -69,7 +69,19 @@ namespace UserService.Application.NotificationMediator.Commands
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                //channel.ExchangeDeclare("userExchange", "fanout");
+                channel.ExchangeDeclare("userExchange", "fanout");
+                channel.QueueDeclare(
+                    queue: "userQueue",
+                    durable: false,
+                    exclusive: false,
+                    autoDelete: false,
+                    arguments: null);
+
+                channel.QueueBind(
+                    queue: "userQueue",
+                    exchange: "userExchange",
+                    routingKey: string.Empty
+                    );
 
                 var body = Encoding.UTF8.GetBytes(jsonObject);
 
@@ -78,15 +90,13 @@ namespace UserService.Application.NotificationMediator.Commands
 
                 channel.BasicPublish(
                     exchange: "",
-                    routingKey: "userKey",
+                    routingKey: "userQueue",
                     basicProperties: null,
                     body: body
                     );
 
                 Console.WriteLine("User data has been forwarded");
-                Console.ReadLine();
             }
-            Console.ReadLine();
 
             return new UserDTO()
             {
