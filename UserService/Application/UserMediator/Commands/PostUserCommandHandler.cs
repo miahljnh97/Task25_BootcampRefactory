@@ -61,9 +61,6 @@ namespace UserService.Application.NotificationMediator.Commands
 
             var jsonObject = JsonConvert.SerializeObject(httpContent);
 
-            //var content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
-
-            //await client.PostAsync("http://localhost:5007/notification", content);
 
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
